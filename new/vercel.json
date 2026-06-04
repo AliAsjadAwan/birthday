@@ -2,21 +2,16 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist/client",
   "functions": {
-    "dist/server/server.js": {
-      "runtime": "nodejs20.x",
+    "dist/server/*.js": {
+      "runtime": "@vercel/node@3",
+      "memory": 1024,
       "maxDuration": 30
     }
   },
-  "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/"
-    }
-  ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "/dist/server/server.js"
+      "dest": "dist/server/server.js"
     }
   ]
 }
