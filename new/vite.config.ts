@@ -12,4 +12,22 @@ export default defineConfig({
     // nitro/vite builds from this
     server: { entry: "server" },
   },
+  vite: {
+    build: {
+      rollupOptions: {
+        onwarn(warning, warn) {
+          // Suppress unused external module warnings from TanStack packages
+          if (
+            warning.code === 'UNUSED_EXTERNAL_IMPORT' &&
+            (warning.message.includes('@tanstack/router-core') ||
+             warning.message.includes('@tanstack/start-server-core') ||
+             warning.message.includes('@tanstack/start-client-core'))
+          ) {
+            return;
+          }
+          warn(warning);
+        },
+      },
+    },
+  },
 });
