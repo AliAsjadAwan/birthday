@@ -1,17 +1,4 @@
 {
   "buildCommand": "npm run build",
-  "outputDirectory": "dist/client",
-  "functions": {
-    "dist/server/*.js": {
-      "runtime": "@vercel/node@3",
-      "memory": 1024,
-      "maxDuration": 30
-    }
-  },
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "dist/server/server.js"
-    }
-  ]
+  "outputDirectory": "dist"
 }
